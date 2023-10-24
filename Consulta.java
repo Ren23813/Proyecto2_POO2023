@@ -165,4 +165,9 @@ public class Consulta {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String toString(){
+        return "DPI=" + getDPI() + ", Nombre del paciente=" + getNombrePaciente() + ", Edad=" + getEdad() + ", Nombre del doctor=" + getNombreDoctor() + ", Sintomas del paciente= " + getSintomasPaciente() + ", Diagnostico= " + getDiagnostico() + ", Descripción=" + getDescripcion();
+    }
+
 }

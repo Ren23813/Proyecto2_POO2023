@@ -3,13 +3,14 @@ import java.util.Scanner;
 public class Vista {
     public static int mostrarmenu(){
         Scanner scanner = new Scanner(System.in);
+        System.out.println("");
         System.out.println("+- Opciones del menu proncipal -+");
         System.out.println("1. Registrar nueva consulta");
-        System.out.println("2. Agregar registro de paciente (leer csv o manual)");
+        System.out.println("2. Agregar registro de paciente (leer csv)");
         System.out.println("3. Consultar de un paciente específico");
-        System.out.println("4. Consultar ¿el último mes? del hospital");
+        System.out.println("4. Consultar el último mes del hospital");
         System.out.println("5. Exportar datos de un paciente específico (guardar en csv)");
-        System.out.println("6. Salir");
+        System.out.println("0. Salir");
         System.out.println("");
 
         System.out.println("Seleccione una opción: ");
@@ -35,4 +36,13 @@ public class Vista {
         
         return s;
     }
+
+    public static long pedirLong(String mensaje) {
+        Scanner scannerl = new Scanner(System.in);
+        System.out.print(mensaje + ": ");
+        long lo = scannerl.nextLong();
+    
+        return lo;
+    }
+    
 }

@@ -7,8 +7,6 @@ import java.util.List;
 
 public class PanControl {
 
-    List<Consulta> consultas = new ArrayList<>();
-
     public static void read_csv(String archivoCSV, List<Consulta> consultas){
         try(BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
             String linea;
@@ -29,6 +27,28 @@ public class PanControl {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public static void NuevaConsulta(List<Consulta> consultas){
+        int cantidad = Vista.pedirEntero("Ingrese la cantidad de consultas que deseea ingresar");
+
+        for (int i = 0; i < cantidad; i++) {
+            int num = i + 1;
+            System.out.println("");
+            System.out.println("-+ Ingrese los datos de paciente " + num + " +-");
+            long DPI = Vista.pedirLong("Ingrese el DPI del paciente");
+            String nombrePaciente = Vista.pedirCadena("Ingrese el nombre del paciente");
+            int edad = Vista.pedirEntero("Ingrese la edad del paciente");
+            String nombreDoctor = Vista.pedirCadena("Ingrese el nombre del medico");
+            String sintomasPaciente = Vista.pedirCadena("Ingrese los sintomas presentados por el paciente");
+            String diagnostico = Vista.pedirCadena("Ingrese el diagnostico del paciente");
+            String descripcion = Vista.pedirCadena("Ingrese una descripción" );
+
+            Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
+            consultas.add(agregarConsulta);
+
         }
     }
 

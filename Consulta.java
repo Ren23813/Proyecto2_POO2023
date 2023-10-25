@@ -14,6 +14,13 @@ public class Consulta {
     private long DPI; // DPI del paciente
     private String nombrePaciente; // Nombre del paciente
     private int edad; // Edad del paciente
+    private int dia; //dia de la consulta
+    private String mes; // mes de la consulta
+    private int año; //año de la consulta
+
+
+    
+
     private String nombreDoctor; // Nombre del doctor
     private String sintomasPaciente; // Síntomas del paciente
     private String diagnostico; // Diagnóstico de la consulta
@@ -25,15 +32,21 @@ public class Consulta {
      * @param DPI DPI del paciente
      * @param nombrePaciente Nombre del paciente
      * @param edad Edad del paciente
+     * @param dia Día de la consulta
+     * @param mes Mes de la consulta 
+     * @param año año de la consulta
      * @param nombreDoctor Nombre del doctor
      * @param sintomasPaciente Síntomas del paciente
      * @param diagnostico Diagnóstico de la consulta
      * @param descripcion Descripción adicional de la consulta
      */
-    public Consulta(long DPI, String nombrePaciente, int edad, String nombreDoctor, String sintomasPaciente, String diagnostico, String descripcion) {
+    public Consulta(long DPI, String nombrePaciente, int edad, int dia, String mes, int año, String nombreDoctor, String sintomasPaciente, String diagnostico, String descripcion) {
         this.DPI = DPI;
         this.nombrePaciente = nombrePaciente;
         this.edad = edad;
+        this.dia = dia;
+        this.mes = mes;
+        this.año = año;
         this.nombreDoctor = nombreDoctor;
         this.sintomasPaciente = sintomasPaciente;
         this.diagnostico = diagnostico;
@@ -65,6 +78,33 @@ public class Consulta {
      */
     public int getEdad() {
         return edad;
+    }
+
+    /**
+     * Obtiene el dia de la consulta.
+     * 
+     * @return El dia de la consulta
+     */
+    public int getDia() {
+        return dia;
+    }
+
+    /**
+     * Obtiene el mes de la consulta.
+     * 
+     * @return El mes de la consulta
+     */
+    public String getMes() {
+        return mes;
+    }
+    
+    /**
+     * Obtiene el año de la consulta.
+     * 
+     * @return El año de la consulta
+     */
+    public int getAño() {
+        return año;
     }
 
     /**
@@ -131,6 +171,33 @@ public class Consulta {
     }
 
     /**
+     * Establece el dia de la consulta.
+     * 
+     * @param dia dia de la consulta.
+     */
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    /**
+     * Establece el mes de la consulta.
+     * 
+     * @param mes mes de la consulta.
+     */
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    /**
+     * Establece el año de la consulta.
+     * 
+     * @param año año de la consulta.
+     */
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    /**
      * Establece el nombre del doctor.
      * 
      * @param nombreDoctor El nombre del doctor.
@@ -167,7 +234,7 @@ public class Consulta {
     }
 
     public String toString(){
-        return "DPI=" + getDPI() + ", Nombre del paciente=" + getNombrePaciente() + ", Edad=" + getEdad() + ", Nombre del doctor=" + getNombreDoctor() + ", Sintomas del paciente= " + getSintomasPaciente() + ", Diagnostico= " + getDiagnostico() + ", Descripción=" + getDescripcion();
+        return "DPI=" + getDPI() + ", Nombre del paciente=" + getNombrePaciente() + ", Edad=" + getEdad() + "El dia de la consulta fue " + getDia() + " mes " + getMes() + "en el año" + getAño() + ", Nombre del doctor=" + getNombreDoctor() + ", Sintomas del paciente= " + getSintomasPaciente() + ", Diagnostico= " + getDiagnostico() + ", Descripción=" + getDescripcion();
     }
 
 }

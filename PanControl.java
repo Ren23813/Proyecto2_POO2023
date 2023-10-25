@@ -17,12 +17,15 @@ public class PanControl {
                 long DPI = Long.parseLong(campos[0]);
                 String nombrePaciente = campos[1];
                 int edad = Integer.parseInt(campos[2]);
-                String nombreDoctor = campos[3];
-                String sintomasPaciente = campos[4];
-                String diagnostico = campos[5];
-                String descripcion = campos[6];
+                int dia = Integer.parseInt(campos[3]);
+                String mes = campos[4];
+                int año = Integer.parseInt(campos[5]);
+                String nombreDoctor = campos[6];
+                String sintomasPaciente = campos[7];
+                String diagnostico = campos[8];
+                String descripcion = campos[9];
 
-                Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
+                Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
                 consultas.add(agregarConsulta);
             }
         } catch (Exception e) {
@@ -41,12 +44,15 @@ public class PanControl {
             long DPI = Vista.pedirLong("Ingrese el DPI del paciente");
             String nombrePaciente = Vista.pedirCadena("Ingrese el nombre del paciente");
             int edad = Vista.pedirEntero("Ingrese la edad del paciente");
+            int dia = Vista.pedirEntero("Ingrese el dia de la consulta (ejemplo: 19)");
+            String mes = Vista.pedirCadena("Ingrese el mes (ejemplo: noviembre)"); 
+            int año = Vista.pedirEntero("Ingrese el año de la consulta (2023)");
             String nombreDoctor = Vista.pedirCadena("Ingrese el nombre del medico");
             String sintomasPaciente = Vista.pedirCadena("Ingrese los sintomas presentados por el paciente");
             String diagnostico = Vista.pedirCadena("Ingrese el diagnostico del paciente");
             String descripcion = Vista.pedirCadena("Ingrese una descripción" );
 
-            Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
+            Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
             consultas.add(agregarConsulta);
 
         }

@@ -71,7 +71,44 @@ public class PanControl {
         }
         System.out.println();
     }
-
-
     
+    public static List<Consulta> ordenarPorMes(String mes, List<Consulta> consultas) {
+        List<Consulta> consultasFiltradas = new ArrayList<>();
+        for (Consulta consulta : consultas) {
+            if (consulta.getMes().equalsIgnoreCase(mes)) {
+                consultasFiltradas.add(consulta);
+            }
+        }
+        return consultasFiltradas;
+    }
+
+    public static void nuevoCSV(String DPI, List<Consulta> consultas) {
+        String nombreArchivo = DPI + "_historial_medico.csv";
+        try (FileWriter writer = new FileWriter(nombreArchivo)) {
+            for (Consulta consulta : consultas) {
+                if (consulta.getDPI() == Long.parseLong(DPI)) {
+                    writer.append(Long.toString(consulta.getDPI()));
+                    writer.append(",");
+                    writer.append(consulta.getNombrePaciente());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getEdad()));
+                    writer.append(",");
+                    writer.append(consulta.getNombreDoctor());
+                    writer.append(",");
+                    writer.append(consulta.getSintomasPaciente());
+                    writer.append(",");
+                    writer.append(consulta.getDiagnostico());
+                    writer.append(",");
+                    writer.append(consulta.getDescripcion());
+                    writer.append(",");
+                    writer.append(consulta.getDia() + "/" + consulta.getMes() + "/" + consulta.getAño());
+                    writer.append("\n");
+                }
+            }
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

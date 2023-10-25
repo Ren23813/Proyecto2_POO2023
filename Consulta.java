@@ -234,7 +234,7 @@ public class Consulta {
     }
 
     public String toString(){
-        return "DPI=" + getDPI() + ", Nombre del paciente=" + getNombrePaciente() + ", Edad=" + getEdad() + "El dia de la consulta fue " + getDia() + " mes " + getMes() + "en el año" + getAño() + ", Nombre del doctor=" + getNombreDoctor() + ", Sintomas del paciente= " + getSintomasPaciente() + ", Diagnostico= " + getDiagnostico() + ", Descripción=" + getDescripcion();
+        return "DPI: " + getDPI() + ", Nombre del paciente: " + getNombrePaciente() + ", Edad: " + getEdad() + ", El dia de la consulta fue el " + getDia() + " de " + getMes() + " de " + getAño() + ", Nombre del doctor: " + getNombreDoctor() + ", Sintomas del paciente: " + getSintomasPaciente() + ", Diagnóstico: " + getDiagnostico() + ", Descripción: " + getDescripcion();
     }
 
 }

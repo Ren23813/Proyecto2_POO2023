@@ -35,13 +35,19 @@ public class Inicio {
 
                 case 4:
                   //consultar por fecha
-                    
-                    break;
+                  String mes = Vista.pedirCadena("Ingrese el mes a filtrar (Ejemplo: enero, febrero, marzo, ...)");
+                  List<Consulta> consultasFiltradas = PanControl.ordenarPorMes(mes, consultas);
+                  for (Consulta consulta : consultasFiltradas) {
+                      System.out.println(consulta);
+                  }
+                  break;
 
                 case 5:
                   //exportar
-                    
-                    break;
+                  String dpiExport = Vista.pedirCadena("Ingrese el DPI del paciente cuyos datos desea exportar");
+                  PanControl.nuevoCSV(dpiExport, consultas);
+                  System.out.println("Datos exportados correctamente.");
+                  break;
                 
                 case 0:
                     //Cierra el programa

@@ -4,7 +4,7 @@ public class Vista {
     public static int mostrarmenu(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("");
-        System.out.println("+- Opciones del menu proncipal -+");
+        System.out.println("+- Opciones del menu principal -+");
         System.out.println("1. Registrar nueva consulta");
         System.out.println("2. Agregar registro de paciente (leer csv)");
         System.out.println("3. Consultar de un paciente específico");

@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +67,13 @@ public class PanControl {
             if (DPIespacio == DPI){
                 estado = consulta.toString();
                 System.out.println(estado);
-                return;
+                System.out.println();
             }
         }
-        System.out.println();
+        
+        if (estado.isEmpty()) {
+            System.out.println("No se encontraron datos para el número ingresado.");
+        }
     }
     
     public static List<Consulta> ordenarPorMes(String mes, List<Consulta> consultas) {
@@ -110,5 +114,4 @@ public class PanControl {
             e.printStackTrace();
         }
     }
-
 }

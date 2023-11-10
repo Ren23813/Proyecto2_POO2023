@@ -1,5 +1,8 @@
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.ArrayList; 
 
 public class Inicio {
     public static void main(String[] args) {
@@ -30,6 +33,7 @@ public class Inicio {
                 case 3:
                   //consultar paciente sin guardar
                     int dpi = Vista.pedirEntero("Ingrese el numero de DPI del paciente que deseea consultar");
+
                     PanControl.buscarDPI(dpi, consultas);
                     break;
 
@@ -46,7 +50,6 @@ public class Inicio {
                   //exportar
                   String dpiExport = Vista.pedirCadena("Ingrese el DPI del paciente cuyos datos desea exportar");
                   PanControl.nuevoCSV(dpiExport, consultas);
-                  System.out.println("Datos exportados correctamente.");
                   break;
                 
                 case 0:

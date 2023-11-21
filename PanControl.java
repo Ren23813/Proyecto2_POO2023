@@ -25,9 +25,28 @@ public class PanControl {
                 String sintomasPaciente = campos[7];
                 String diagnostico = campos[8];
                 String descripcion = campos[9];
+                int prueba = Integer.parseInt(campos[10]);
 
-                Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
-                consultas.add(agregarConsulta);
+                switch (prueba) {
+                    case 1:
+                        String tipo = campos[11];
+                        Sangre consultSangre = new Sangre(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, tipo);
+                        consultas.add(consultSangre);
+                        break;
+
+                    case 2:
+                        String niveles = campos[11];
+                        Glucosa consultGlucosa = new Glucosa(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, niveles);
+                        consultas.add(consultGlucosa);
+                        break;
+
+                    case 3:
+                        String examen = campos[12];
+                        Lab consultLab = new Lab(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, examen);
+                        consultas.add(consultLab);
+                        break;
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,9 +71,23 @@ public class PanControl {
             String sintomasPaciente = Vista.pedirCadena("Ingrese los sintomas presentados por el paciente");
             String diagnostico = Vista.pedirCadena("Ingrese el diagnostico del paciente");
             String descripcion = Vista.pedirCadena("Ingrese una descripción" );
+            int prueba = Vista.pedirEntero("Ingrese el numero del tipo de prueba (1.Sangre general / 2. Glucosa / 3. Laboratorio)");
 
-            Consulta agregarConsulta = new Consulta(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion);
-            consultas.add(agregarConsulta);
+            if (prueba == 1){
+                String tipo = Vista.pedirCadena("Ingrese el tipo de sangre del paciente");
+                Sangre consultSangre = new Sangre(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, tipo);
+                consultas.add(consultSangre);
+            } else if (prueba == 2){
+                String niveles = Vista.pedirCadena("Ingrese los niveles de glucosa del paciente");
+                Glucosa consultGlucosa = new Glucosa(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, niveles);
+                consultas.add(consultGlucosa);
+            } else if (prueba == 3){
+                String examen = Vista.pedirCadena("Ingrese los examen de laboratorio del paciente");
+                Lab consultLab = new Lab(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, examen);
+                consultas.add(consultLab);
+            } else {
+                System.out.println("El dato que ingreso no se encuentra en la base de datos.");
+            }
 
         }
     }

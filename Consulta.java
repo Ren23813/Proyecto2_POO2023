@@ -9,7 +9,7 @@
  * @since 22/10/23
  * Comentado Javadoc por ChatGPT
  */
-public class Consulta {
+public abstract class Consulta {
 
     private long DPI; // DPI del paciente
     private String nombrePaciente; // Nombre del paciente
@@ -18,13 +18,11 @@ public class Consulta {
     private String mes; // mes de la consulta
     private int año; //año de la consulta
 
-
-    
-
     private String nombreDoctor; // Nombre del doctor
     private String sintomasPaciente; // Síntomas del paciente
     private String diagnostico; // Diagnóstico de la consulta
     private String descripcion; // Descripción adicional de la consulta
+    private int prueba;
 
     /**
      * Constructor para crear una instancia de Consulta.
@@ -39,8 +37,10 @@ public class Consulta {
      * @param sintomasPaciente Síntomas del paciente
      * @param diagnostico Diagnóstico de la consulta
      * @param descripcion Descripción adicional de la consulta
+     * @param prueba Prueba a la cual se va a someter el paciente
      */
-    public Consulta(long DPI, String nombrePaciente, int edad, int dia, String mes, int año, String nombreDoctor, String sintomasPaciente, String diagnostico, String descripcion) {
+    public Consulta(long DPI, String nombrePaciente, int edad, int dia, String mes, int año, String nombreDoctor, 
+            String sintomasPaciente, String diagnostico, String descripcion, int prueba) {
         this.DPI = DPI;
         this.nombrePaciente = nombrePaciente;
         this.edad = edad;
@@ -143,6 +143,10 @@ public class Consulta {
         return descripcion;
     }
 
+    public int getPrueba() {
+        return prueba;
+    }
+
     /**
      * Establece el DPI del paciente.
      * 
@@ -233,8 +237,15 @@ public class Consulta {
         this.descripcion = descripcion;
     }
 
+    public void setPrueba(int prueba) {
+        this.prueba = prueba;
+    }
+
     public String toString(){
-        return "DPI: " + getDPI() + ", Nombre del paciente: " + getNombrePaciente() + ", Edad: " + getEdad() + ", El dia de la consulta fue el " + getDia() + " de " + getMes() + " de " + getAño() + ", Nombre del doctor: " + getNombreDoctor() + ", Sintomas del paciente: " + getSintomasPaciente() + ", Diagnóstico: " + getDiagnostico() + ", Descripción: " + getDescripcion();
+        return "DPI: " + getDPI() + ", Nombre del paciente: " + getNombrePaciente() + 
+        ", Edad: " + getEdad() + ", El dia de la consulta fue el " + getDia() + " de " + getMes() + 
+        " de " + getAño() + ", Nombre del doctor: " + getNombreDoctor() + ", Sintomas del paciente: " + getSintomasPaciente() + 
+        ", Diagnóstico: " + getDiagnostico() + ", Descripción: " + getDescripcion() + "Prueba: " + getPrueba();
     }
 
 }

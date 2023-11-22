@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -210,5 +211,32 @@ public class PanControl {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean validarRutaArchivoCsv(String ruta) {
+        // Verificar que la ruta no esté vacía
+        if (ruta == null || ruta.isEmpty()) {
+            System.out.println("Error: La ruta del archivo no puede estar vacía.");
+            return false;
+        }
+
+        // Crear un objeto File con la ruta proporcionada
+        File archivo = new File(ruta);
+
+        // Verificar que el archivo exista
+        if (!archivo.exists()) {
+            System.out.println("Error: El archivo no existe en la ruta especificada.");
+            return false;
+        }
+
+        // Verificar que el archivo tenga la extensión CSV
+        String nombreArchivo = archivo.getName();
+        if (!nombreArchivo.toLowerCase().endsWith(".csv")) {
+            System.out.println("Error: El archivo no tiene la extensión CSV.");
+            return false;
+        }
+
+        // La ruta del archivo CSV es válida
+        return true;
     }
 }

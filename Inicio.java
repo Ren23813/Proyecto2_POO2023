@@ -25,7 +25,7 @@ public class Inicio {
                 case 2:
                   // agregar registro de paciente csv
                   String ruta = Vista.pedirCadena("Ingrese la ruta o nombre del archivo");
-                  if (validarRutaArchivo(ruta)) {
+                  if (PanControl.validarRutaArchivoCsv(ruta)) {
                     PanControl.read_csv(ruta, consultas, sangres, glucosas, labs);
                     InterfazSalida.mostrarMensaje("Datos cargados con éxito.");
                   } else {

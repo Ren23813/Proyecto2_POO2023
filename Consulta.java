@@ -51,6 +51,7 @@ public abstract class Consulta {
         this.sintomasPaciente = sintomasPaciente;
         this.diagnostico = diagnostico;
         this.descripcion = descripcion;
+        this.prueba = prueba;
     }
 
     /**

@@ -8,6 +8,9 @@ public class Inicio {
 
         System.out.println("Bienvenido al programa de consultas");
         List<Consulta> consultas = new ArrayList<>();
+        List<Sangre> sangres = new ArrayList<>();
+        List<Glucosa> glucosas = new ArrayList<>();
+        List<Lab> labs = new ArrayList<>();
 
         while (true) {
             //llamar a la clase Menu para mostrar al usuario las opciones del menu
@@ -17,13 +20,13 @@ public class Inicio {
             switch (opcion) {
                 case 1:
                   //registrar nuevo paciente
-                    PanControl.NuevaConsulta(consultas);
+                    PanControl.NuevaConsulta(consultas, sangres, glucosas, labs);
                     break;
 
                 case 2:
                   // agregar registro de paciente csv
                     String ruta = Vista.pedirCadena("Ingrese la ruta o nombre del archivo");
-                    PanControl.read_csv(ruta, consultas);
+                    PanControl.read_csv(ruta, consultas, sangres, glucosas, labs);
                     
                     break;
 
@@ -46,7 +49,7 @@ public class Inicio {
                 case 5:
                   //exportar
                   String dpiExport = Vista.pedirCadena("Ingrese el DPI del paciente cuyos datos desea exportar");
-                  PanControl.nuevoCSV(dpiExport, consultas);
+                  PanControl.nuevoCSV(dpiExport, consultas, sangres, glucosas, labs);
                   break;
                 
                 case 0:

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PanControl {
 
-    public static void read_csv(String archivoCSV, List<Consulta> consultas){
+    public static void read_csv(String archivoCSV, List<Consulta> consultas, List<Sangre> sangres, List<Glucosa> glucosas, List<Lab> labs){
         try(BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
             String linea;
             br.readLine();
@@ -31,18 +31,21 @@ public class PanControl {
                     case 1:
                         String tipo = campos[11];
                         Sangre consultSangre = new Sangre(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, tipo);
+                        sangres.add(consultSangre);
                         consultas.add(consultSangre);
                         break;
 
                     case 2:
                         String niveles = campos[11];
                         Glucosa consultGlucosa = new Glucosa(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, niveles);
+                        glucosas.add(consultGlucosa);
                         consultas.add(consultGlucosa);
                         break;
 
                     case 3:
                         String examen = campos[12];
                         Lab consultLab = new Lab(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, examen);
+                        labs.add(consultLab);
                         consultas.add(consultLab);
                         break;
                 }
@@ -54,7 +57,7 @@ public class PanControl {
     }
 
 
-    public static void NuevaConsulta(List<Consulta> consultas){
+    public static void NuevaConsulta(List<Consulta> consultas, List<Sangre> sangres, List<Glucosa> glucosas, List<Lab> labs){
         int cantidad = Vista.pedirEntero("Ingrese la cantidad de consultas que deseea ingresar");
 
         for (int i = 0; i < cantidad; i++) {
@@ -76,14 +79,17 @@ public class PanControl {
             if (prueba == 1){
                 String tipo = Vista.pedirCadena("Ingrese el tipo de sangre del paciente");
                 Sangre consultSangre = new Sangre(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, tipo);
+                sangres.add(consultSangre);
                 consultas.add(consultSangre);
             } else if (prueba == 2){
                 String niveles = Vista.pedirCadena("Ingrese los niveles de glucosa del paciente");
                 Glucosa consultGlucosa = new Glucosa(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, niveles);
+                glucosas.add(consultGlucosa);
                 consultas.add(consultGlucosa);
             } else if (prueba == 3){
                 String examen = Vista.pedirCadena("Ingrese los examen de laboratorio del paciente");
                 Lab consultLab = new Lab(DPI, nombrePaciente, edad, dia, mes, año, nombreDoctor, sintomasPaciente, diagnostico, descripcion, prueba, examen);
+                labs.add(consultLab);
                 consultas.add(consultLab);
             } else {
                 System.out.println("El dato que ingreso no se encuentra en la base de datos.");
@@ -119,11 +125,11 @@ public class PanControl {
         return consultasFiltradas;
     }
 
-    public static void nuevoCSV(String DPI, List<Consulta> consultas) {
+    public static void nuevoCSV(String DPI, List<Consulta> consultas, List<Sangre> sangres, List<Glucosa> glucosas, List<Lab> labs) {
         String nombreArchivo = DPI + "_historial_medico.csv";
         try (FileWriter writer = new FileWriter(nombreArchivo)) {
-            for (Consulta consulta : consultas) {
-                if (consulta.getDPI() == Long.parseLong(DPI)) {
+            for (Sangre consulta : sangres) {
+                if (consulta.getDPI() == Long.parseLong(DPI) & consulta.getPrueba() == 1) {
                     writer.append(Long.toString(consulta.getDPI()));
                     writer.append(",");
                     writer.append(consulta.getNombrePaciente());
@@ -139,6 +145,64 @@ public class PanControl {
                     writer.append(consulta.getDescripcion());
                     writer.append(",");
                     writer.append(consulta.getDia() + "/" + consulta.getMes() + "/" + consulta.getAño());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getPrueba()));
+                    writer.append(",");
+                    writer.append(consulta.getTipo());
+                    writer.append(",");
+                    writer.append(",");
+                    writer.append("\n");
+                }
+            }
+            for (Glucosa consulta : glucosas) {
+                if (consulta.getDPI() == Long.parseLong(DPI) & consulta.getPrueba() == 2) {
+                    writer.append(Long.toString(consulta.getDPI()));
+                    writer.append(",");
+                    writer.append(consulta.getNombrePaciente());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getEdad()));
+                    writer.append(",");
+                    writer.append(consulta.getNombreDoctor());
+                    writer.append(",");
+                    writer.append(consulta.getSintomasPaciente());
+                    writer.append(",");
+                    writer.append(consulta.getDiagnostico());
+                    writer.append(",");
+                    writer.append(consulta.getDescripcion());
+                    writer.append(",");
+                    writer.append(consulta.getDia() + "/" + consulta.getMes() + "/" + consulta.getAño());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getPrueba()));
+                    writer.append(",");
+                    writer.append(",");
+                    writer.append(consulta.getNiveles());
+                    writer.append(",");
+                    writer.append("\n");
+                }
+            }
+            for (Lab consulta : labs) {
+                if (consulta.getDPI() == Long.parseLong(DPI) & consulta.getPrueba() == 3) {
+                    writer.append(Long.toString(consulta.getDPI()));
+                    writer.append(",");
+                    writer.append(consulta.getNombrePaciente());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getEdad()));
+                    writer.append(",");
+                    writer.append(consulta.getNombreDoctor());
+                    writer.append(",");
+                    writer.append(consulta.getSintomasPaciente());
+                    writer.append(",");
+                    writer.append(consulta.getDiagnostico());
+                    writer.append(",");
+                    writer.append(consulta.getDescripcion());
+                    writer.append(",");
+                    writer.append(consulta.getDia() + "/" + consulta.getMes() + "/" + consulta.getAño());
+                    writer.append(",");
+                    writer.append(Integer.toString(consulta.getPrueba()));
+                    writer.append(",");
+                    writer.append(",");
+                    writer.append(",");
+                    writer.append(consulta.getExamen());
                     writer.append("\n");
                 }
             }

@@ -19,7 +19,7 @@ public class Sangre extends Consulta {
         return "DPI: " + getDPI() + ", Nombre del paciente: " + getNombrePaciente() + 
         ", Edad: " + getEdad() + ", El dia de la consulta fue el " + getDia() + " de " + getMes() + 
         " de " + getAño() + ", Nombre del doctor: " + getNombreDoctor() + ", Sintomas del paciente: " + getSintomasPaciente() + 
-        ", Diagnóstico: " + getDiagnostico() + ", Descripción: " + getDescripcion() + "Tipo: " + getTipo();
+        ", Diagnóstico: " + getDiagnostico() + ", Descripción: " + getDescripcion() + ", Prueba: " + getPrueba() + ", Tipo: " + getTipo();
     }
 
 }

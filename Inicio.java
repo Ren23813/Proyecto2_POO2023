@@ -4,8 +4,6 @@ import java.util.ArrayList;
 public class Inicio {
     public static void main(String[] args) {
 
-
-
         System.out.println("Bienvenido al programa de consultas");
         List<Consulta> consultas = new ArrayList<>();
         List<Sangre> sangres = new ArrayList<>();
@@ -21,12 +19,19 @@ public class Inicio {
                 case 1:
                   //registrar nuevo paciente
                     PanControl.NuevaConsulta(consultas, sangres, glucosas, labs);
+                    InterfazSalida.mostrarMensaje("Datos guardados con éxito.");
                     break;
 
                 case 2:
                   // agregar registro de paciente csv
-                    String ruta = Vista.pedirCadena("Ingrese la ruta o nombre del archivo");
+                  String ruta = Vista.pedirCadena("Ingrese la ruta o nombre del archivo");
+                  if (validarRutaArchivo(ruta)) {
                     PanControl.read_csv(ruta, consultas, sangres, glucosas, labs);
+                    InterfazSalida.mostrarMensaje("Datos cargados con éxito.");
+                  } else {
+                    InterfazSalida.mostrarMensaje("Error: La ruta del archivo no es válida.");
+                  }
+
                     
                     break;
 
@@ -60,7 +65,7 @@ public class Inicio {
 
                 default:
                     //PRogramación por si e ingresa un numero que no pertenece a ninguna opcion predefinida
-                    System.out.println("Opción no válida.");
+                    InterfazSalida.mostrarMensaje("Opción no válida.");
                     break;
             }
         }
